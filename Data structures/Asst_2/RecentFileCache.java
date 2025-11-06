@@ -19,6 +19,7 @@ public class RecentFileCache {
     Node head;
     Node tail;
     int size;
+    final int CAPACITY = 10;
     
     void accessFile(String filename) {
         Node file = linearSearch(filename);
@@ -26,9 +27,8 @@ public class RecentFileCache {
             remove(file);
             insertFirst(file);
         }
-        else if(file == null && size < 10) { // not found and available
+        else if(file == null && size < CAPACITY) { // not found and available
             insertFirst(new Node(filename));
-            size++;
         }
         else { // not found and not available
             remove(tail);
@@ -42,6 +42,7 @@ public class RecentFileCache {
             tail = file;
             file.prev = null;
             file.next = null;
+            size++;
             return;
         }
         
@@ -49,6 +50,7 @@ public class RecentFileCache {
        file.prev = null;
        head.prev = file;
        head = file;
+       size++;
     }
     
     void remove(Node file) {
@@ -63,17 +65,19 @@ public class RecentFileCache {
         } else {
             file.next.prev = file.prev;
         }
+        
+        size--;
     }
     
     Node linearSearch(String filename) {
         Node temp = head;
         while(temp != null) {
             if(temp.filename.equalsIgnoreCase(filename)) {
-                break;
+                return temp;
             }
             temp = temp.next;
         }
-        return temp;
+        return null;
     }
     
     private class Node {
