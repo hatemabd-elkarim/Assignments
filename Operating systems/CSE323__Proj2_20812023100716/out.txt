@@ -1,0 +1,5 @@
+total 44
+-rw-r--r-- 1 hatem users    96 Nov  5 14:45 Makefile
+-rwxr-xr-x 1 hatem users 30744 Nov  5 15:06 osh
+-rw-r--r-- 1 hatem users  6088 Nov  5 14:45 osh.c
+-rw-r--r-- 1 hatem users     0 Nov  5 15:06 out.txt
